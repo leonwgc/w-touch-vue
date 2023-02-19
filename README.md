@@ -2,7 +2,7 @@
 
 ### 特点
 
-1. 支持鼠标和手指操作 (内部统一Mouse & Touch事件处理)
+1. 支持鼠标和手指操作 (内部统一 Mouse & Touch 事件处理)
 2. 支持常用的多种手势
 
 ### 支持的手势
@@ -31,28 +31,43 @@ const style = ref<CSSProperties>({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: '26px',
+  fontSize: '18px',
   cursor: 'move',
   userSelect: 'none',
-  padding: '20px',
+  padding: '12px',
   color: '#fff',
+  touchAction: 'none',
 });
 
-const positionRef = ref({ x: 0, y: 0, angle: 0, scale: 1 });
+const position = ref({ x: 0, y: 0, angle: 0, scale: 1 });
 
 const msg = ref('');
 
+const updateTransform = () => {
+  const transform = `translate(${position.value.x}px,${position.value.y}px) rotate(${position.value.angle}deg) scale(${position.value.scale})`;
+  style.value.transform = transform;
+  msg.value = transform;
+};
+
 const options: Options = {
   onDoubleTap: () => {
-    console.log('double taped');
+    msg.value = '你双击了';
   },
-  onSwipe({ direction }) {
-    msg.value = `滑动方向：${direction}`;
+  onLongTap: () => {
+    msg.value = '长按了';
   },
   onPressMove({ deltaX, deltaY }) {
-    positionRef.value.x = positionRef.value.x + deltaX;
-    positionRef.value.y = positionRef.value.y + deltaY;
-    style.value.transform = `translate(${positionRef.value.x}px,${positionRef.value.y}px)`;
+    position.value.x = position.value.x + deltaX;
+    position.value.y = position.value.y + deltaY;
+    updateTransform();
+  },
+  onPinch({ scale }) {
+    position.value.scale = scale;
+    updateTransform();
+  },
+  onRotate({ angle }) {
+    position.value.angle += angle;
+    updateTransform();
   },
 };
 </script>

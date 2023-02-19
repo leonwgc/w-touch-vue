@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import TouchElement, { type Options } from '../src/TouchElement.vue';
 import type { CSSProperties } from 'vue';
-import { WTouchEvent } from 'w-touch/types/Touch';
 
 const style = ref<CSSProperties>({
   background: '#005cff',
