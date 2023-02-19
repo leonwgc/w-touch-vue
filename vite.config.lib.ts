@@ -19,7 +19,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src'),
       name: 'w-touch-vue',
-      fileName: 'w-touch-vue.js',
+      fileName: 'w-touch-vue',
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: ['vue'],

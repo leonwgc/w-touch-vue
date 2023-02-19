@@ -1,6 +1,6 @@
 {
   "name": "w-touch-vue",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "description": "Vue3 gesture component for pc and mobile",
   "keywords": [
     "vue3",
@@ -21,8 +21,8 @@
   "bugs": {
     "url": "https://github.com/leonwgc/w-touch-vue/issues"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/w-touch-vue.js",
+  "module": "dist/w-touch-vue.mjs",
   "typings": "types/index.d.ts",
   "scripts": {
     "prepare": "husky install",
