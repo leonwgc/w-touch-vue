@@ -3,8 +3,7 @@
 ### 特点
 
 1. 支持鼠标和手指操作 (内部统一Mouse & Touch事件处理)
-2. 使用 TypeScript 编写，内置类型定义文件，良好的智能提示
-3. 支持多种手势
+2. 支持常用的多种手势
 
 ### 支持的手势
 
@@ -22,7 +21,7 @@
 ```js
 <script setup lang="ts">
 import { ref } from 'vue';
-import TouchElement from '../src/TouchElement.vue';
+import TouchElement, { type Options } from 'w-touch-vue';
 import type { Options } from 'w-touch';
 import type { CSSProperties } from 'vue';
 

@@ -156,5 +156,5 @@ const D = /* @__PURE__ */ x({
   }
 });
 export {
-  D as TouchElement
+  D as default
 };
