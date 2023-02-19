@@ -128,4 +128,3 @@ declare class Touch {
   off(evt: any, handler: any): void;
   destroy(): any;
 }
-export default Touch;
