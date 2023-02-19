@@ -1,8 +1,10 @@
 {
   "name": "w-touch-vue",
   "version": "1.0.0-beta1",
-  "description": "Vue3 touch gesture library for pc and mobile",
+  "description": "Vue3 gesture component for pc and mobile",
   "keywords": [
+    "vue3",
+    "gesture",
     "touch",
     "mouse",
     "gesture",
