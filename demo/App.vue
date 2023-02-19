@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { nextTick, ref } from 'vue';
-import TouchElement from '../src/TouchElement.vue';
-import type { Options } from 'w-touch';
+import { ref } from 'vue';
+import TouchElement, { type Options } from '../src/TouchElement.vue';
 import type { CSSProperties } from 'vue';
 import { WTouchEvent } from 'w-touch/types/Touch';
 

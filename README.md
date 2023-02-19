@@ -22,7 +22,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import TouchElement, { type Options } from 'w-touch-vue';
-import type { Options } from 'w-touch';
 import type { CSSProperties } from 'vue';
 
 const style = ref<CSSProperties>({
