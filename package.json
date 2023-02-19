@@ -30,7 +30,7 @@
     "build:doc": "node pack"
   },
   "peerDependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.0"
   },
   "dependencies": {
     "w-touch": "^2.0.0"

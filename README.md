@@ -1,10 +1,12 @@
+# Vue3 手势操作组件
+
 ### 特点
 
 1. 支持鼠标和手指操作 (内部统一Mouse & Touch事件处理)
 2. 使用 TypeScript 编写，内置类型定义文件，良好的智能提示
 3. 支持多种手势
 
-### 手势
+### 支持的手势
 
 1. 单击 onSingleTap
 2. 双击 onDoubleTap
@@ -15,86 +17,63 @@
 7. 滑动方向判断 onSwipe
 8. 双指滑动 onTwoFingerPressMove
 
-## js 使用
+## 使用
 
 ```js
-import Touch from 'w-touch';
+<script setup lang="ts">
+import { ref } from 'vue';
+import TouchElement from '../src/TouchElement.vue';
+import type { Options } from 'w-touch';
+import type { CSSProperties } from 'vue';
 
-// 构造对象,参数见下面类型定义说明
-const touch = new Touch(el as Element, {
-      onDoubleTap() {
-        
-      },
-      onLongTap() {
-       
-      },
-      onPinch({ scale }) {
-       
-      },
-      onRotate({ angle }) {
-      
-      },
-      onPressMove({ deltaX, deltaY }) {
-      
-      },
-      onSwipe({ direction }) {
-       
-      },
-    });
-
-    // 销毁
-    touch.destroy();
-```
-
-## React 绑定 (Vue同理)
-
-```js
-import * as React from 'react';
-import Touch, { Options } from 'w-touch';
-
-type Props = {
-  /** 手势操作元素,如果是组件，需要forwardRef到dom */
-  children: React.ReactElement;
-} & Options;
-
-const checkFailed = () => {
-  throw new Error('TouchElement: 子元素必须是dom/forwardRef到dom的组件');
-};
-
-/** 给子元素添加手势操作 */
-const TouchElement = React.forwardRef<Element, Props>((props, ref) => {
-  const { children, ...rest } = props;
-  const elRef = React.useRef<Element>(null);
-
-  React.useImperativeHandle(ref, () => elRef.current as Element);
-
-  React.useLayoutEffect(() => {
-    const el = elRef.current;
-    if (!(el instanceof Element)) {
-      checkFailed();
-    }
-
-    const fg = new Touch(el as Element, rest as Options);
-
-    return () => {
-      fg.destroy();
-    };
-  }, []);
-
-  if (!React.isValidElement(children)) {
-    checkFailed();
-  }
-
-  return <children.type {...(children.props as Record<string, unknown>)} ref={elRef} />;
+const style = ref<CSSProperties>({
+  background: '#005cff',
+  width: '140px',
+  height: '140px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '26px',
+  cursor: 'move',
+  userSelect: 'none',
+  padding: '20px',
+  color: '#fff',
 });
 
-TouchElement.displayName = 'TouchElement';
+const positionRef = ref({ x: 0, y: 0, angle: 0, scale: 1 });
 
-export default TouchElement;
+const msg = ref('');
+
+const options: Options = {
+  onDoubleTap: () => {
+    console.log('double taped');
+  },
+  onSwipe({ direction }) {
+    msg.value = `滑动方向：${direction}`;
+  },
+  onPressMove({ deltaX, deltaY }) {
+    positionRef.value.x = positionRef.value.x + deltaX;
+    positionRef.value.y = positionRef.value.y + deltaY;
+    style.value.transform = `translate(${positionRef.value.x}px,${positionRef.value.y}px)`;
+  },
+};
+</script>
+
+<template>
+  <div class="msg">{{ msg }}</div>
+  <TouchElement :options="options" :style="style">Touch me !</TouchElement>
+</template>
+
+<style scoped>
+.msg {
+  color: #005cff;
+  font-size: 18px;
+}
+</style>
 
 ```
 
-## 事件类型
+## Options 手势事件类型定义
 
 ```js
 type Options = Partial<{
