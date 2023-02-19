@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref, defineProps } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import Touch, { type Options } from 'w-touch';
 
 const props = defineProps<{
