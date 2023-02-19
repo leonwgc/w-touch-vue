@@ -30,9 +30,6 @@ const updateTransform = () => {
 };
 
 const options: Options = {
-  onTouchEnd: (e: WTouchEvent) => {
-    e.preventDefault();
-  },
   onDoubleTap: () => {
     msg.value = '你双击了';
   },
